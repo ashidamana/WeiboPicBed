@@ -162,6 +162,14 @@ function uploadWeiboImg(request,callback) {
 	xhr.send(data);
 }
 
+//上传SMMS图片
+//传入图片的base64编码值，完成后调用callback函数
+//向callback中传入json格式的返回值，格式{data:url}
+//如果上传失败，url为null
+function uploadSMMSImg(){
+    
+}
+
 function pid2url(params, type) {
 	function crc32(str) {
 		str = String(str);

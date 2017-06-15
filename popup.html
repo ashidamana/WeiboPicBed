@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>微博图床</title>
+    <title>SMMS图床伴侣</title>
     <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" href="css/sweet-alert.min.css" rel="stylesheet">
     <link type="text/css" href="css/loaders.min.css" rel="stylesheet">
@@ -48,6 +48,7 @@
 
     body {
         font-size: 12px;
+        background-color: #eeeeee;
     }
 
     ::selection {
@@ -66,12 +67,12 @@
         -webkit-transition: all .4s;
         padding: 2px;
         border-radius: 2px;
-        color: #808080;
+        color: #01AAED;
     }
 
     a#optionPage:hover {
         color: #FFF;
-        background-color: #808080;
+        background-color: #1E9FFF;
         text-decoration: none;
     }
 
@@ -429,10 +430,8 @@
             </div>
         </div>
         <div class="navbar-fixed-bottom">
-            <div class="https col-xs-8">
-                <input id="https" type="checkbox"> HTTPS
-            </div>
-            <div class="col-xs-4">
+            <input id="https" type="checkbox" checked="checked" style="display:none;">
+            <div class="col-xs-12">
                 <button class="pull-right btn btn-default btn-batch" type="button">批量模式</button>
             </div>
         </div>
