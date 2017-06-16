@@ -1,7 +1,7 @@
 ##  一些声明  
 
-本扩展是为了对[https://sm.ms/](https://sm.ms/)的功能做封装而开发的。
-主体代码基于[WeiboPicBed](https://github.com/Suxiaogang/WeiboPicBed)
+本扩展是为了对[https://sm.ms/](https://sm.ms/)的功能做封装而开发的,主体代码基于[WeiboPicBed](https://github.com/Suxiaogang/WeiboPicBed)。
+使用时请遵守[https://sm.ms/](https://sm.ms/)的相关规则。
 
 ##  Features  
 
