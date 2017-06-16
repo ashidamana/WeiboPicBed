@@ -7,14 +7,18 @@
 - 可生成图片链接,HTML,UBB和Markdown四种格式
 - 支持返回https安全协议的图片地址
 - 支持自定义Chrome菜单栏图标
-- 上传历史浏览和删除
+- 上传历史浏览和删除（注：历史记录是依托于浏览器的）
 
 ## Screenshots
-![](http://ww3.sinaimg.cn/large/5fd37818jw1ew172qsxbog20lz0c2qcn.gif)
+![上传页面](https://ooo.0o0.ooo/2017/06/16/59434b42c173e.jpg)
 
-![](http://ww1.sinaimg.cn/large/5fd37818gw1eqps6zuxslj20xc0p0q9q.jpg)
+![上传后的页面，可复制链接](https://ooo.0o0.ooo/2017/06/16/59434b45bf527.jpg)
 
-![](http://ww2.sinaimg.cn/large/5fd37818gw1eqhxjffq1tj20zk0m8wj6.jpg)
+![历史记录页面](https://ooo.0o0.ooo/2017/06/16/59434b48494cb.jpg)  
+
+![删除页面](https://ooo.0o0.ooo/2017/06/16/59434b4abf4a9.jpg)  
+
+![图片详情](https://ooo.0o0.ooo/2017/06/16/59434b4da295b.jpg)
 
 ## Contributors
 [Flyer](https://github.com/ashidamana/) 
