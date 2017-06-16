@@ -450,6 +450,8 @@ Wbpd.prototype = {
                                     path:rs.data.path,
                                     hash:rs.data.hash
                                 });
+                            }else{
+                                alert(rs.msg);
                             }
                             return true;
                         } catch (e) {
