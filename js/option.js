@@ -1,4 +1,4 @@
-var storageData = localStorage.weiboData ? JSON.parse(localStorage.weiboData) : [];
+var storageData = localStorage.smmsData ? JSON.parse(localStorage.smmsData) : [];
 var customIconPreview = $('#custom-icon-preview');
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
@@ -55,7 +55,7 @@ function removeImgItem(d) {
         var timestamp = item.date;
         if (timestamp == d) {
             storageData.splice(i, 1);
-            localStorage.weiboData = JSON.stringify(storageData);
+            localStorage.smmsData = JSON.stringify(storageData);
             return;
         }
     }

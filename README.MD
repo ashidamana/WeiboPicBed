@@ -2,6 +2,21 @@
 本扩展是为了对[https://sm.ms/](https://sm.ms/)的功能做封装而开发的。
 主体代码基于[WeiboPicBed](https://github.com/Suxiaogang/WeiboPicBed)
 
+## 以下为SMMSPicBed的更新历史
+
+2017-06-16 v0.0.2
+支持点选/拖拽2种方式上传图片至https://sm.ms/图床  
+可生成图片链接,HTML,UBB和Markdown四种格式
+支持返回https安全协议的图片地址
+支持自定义Chrome菜单栏图标
+上传历史浏览和删除
+
+2017-06-15 v0.0.1
+初始化项目
+
+---
+
+##以下为WeiboPicBed的更新历史
 <a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf/reviews" target="_blank">
 	<img width="300px" src="http://ww3.sinaimg.cn/large/5fd37818jw1eq7bx4bc4ej20c0038mx9.jpg">
 </a>
