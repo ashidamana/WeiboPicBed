@@ -11,7 +11,7 @@
 - 支持自定义Chrome菜单栏图标
 - 上传历史浏览和删除（注：历史记录是依托于浏览器的）
 
-##  Screenshots  
+## 🖼 Screenshots
 
 ![上传页面](https://ooo.0o0.ooo/2017/06/16/59434b42c173e.jpg)
 
