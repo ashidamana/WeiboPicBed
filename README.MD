@@ -3,6 +3,9 @@
 本扩展是为了对[https://sm.ms/](https://sm.ms/)的功能做封装而开发的,主体代码基于[WeiboPicBed](https://github.com/Suxiaogang/WeiboPicBed)。  
 使用时请遵守[https://sm.ms/](https://sm.ms/)的相关规则。
 
+##  Donate
+![Donate](https://ooo.0o0.ooo/2017/06/16/59435b632d79e.png)
+
 ##  Features  
 
 - 支持点选/拖拽2种方式上传图片至https://sm.ms/
