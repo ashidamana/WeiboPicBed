@@ -331,6 +331,16 @@ Wbpd.prototype = {
         });
         localStorage.smmsData = JSON.stringify(storageData);
     },
+    saveImgInfoToLocal: function(imginfo) {
+        //store upload image to localStorage
+        storageData.push({
+            date: (new Date()).getTime(),
+            imginfo: imginfo
+        });
+        localStorage.smmsData = JSON.stringify(storageData);
+        $(".loader-wrap").fadeOut("fast");
+        $(".btn-copy").removeClass("disabled");
+    },
     //批量上传图片时,绘制结果区
     batchDisplay: function(n) {
         var str = '';
@@ -368,9 +378,6 @@ Wbpd.prototype = {
         } else {
             $('.btn-batch').removeAttr('disabled');
             $('.btn-batchcopy').removeAttr('disabled');
-            $('.btn-copy').removeAttr('disabled');
-            $('.btn-copy').removeClass('disabled');
-            console.log('移除');
         }
 
     },
@@ -427,7 +434,7 @@ Wbpd.prototype = {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
                         var resText = xhr.responseText;
-                        var splitIndex, rs, pid, params;
+                        var splitIndex, rs;
                         try {
                             splitIndex = resText.indexOf('{"');
                             rs = JSON.parse(resText.substring(splitIndex));
@@ -436,41 +443,23 @@ Wbpd.prototype = {
                                 console.log('上传成功');
                                 image_url = Wbpd.prototype.inputPicUrl(rs.data.url);
                                 Wbpd.prototype.toggleBtn(1);
+//                                保存就到本地
+                                Wbpd.prototype.saveImgInfoToLocal({
+                                    filename:rs.data.filename,
+                                    storename:rs.data.storename,
+                                    path:rs.data.path,
+                                    hash:rs.data.hash
+                                });
                             }
                             return true;
                         } catch (e) {
                             console.log("上传失败");
                             console.log(e);
-//                            alert("上传失败，您可以到https://sm.ms/手动上传或稍后再试~");
-//                            chrome.tabs.create({ url: 'https://sm.ms/' });
-//                            window.close();
+                            alert("上传失败，您可以到https://sm.ms/手动上传或稍后再试~");
+                            chrome.tabs.create({ url: 'https://sm.ms/' });
+                            window.close();
                             return;
                         }
-
-//                        try {
-//                            splitIndex = resText.indexOf('{"');
-//                            rs = JSON.parse(resText.substring(splitIndex));
-//                            pid = rs.data.pics.pic_1.pid;
-//                            global_pid = pid;
-//                            params = {
-//                                smfile:imgFile,
-//                                ssl:true
-//                            };
-//                            image_url = Wbpd.prototype.changePicFormat(params, i);
-//                            Wbpd.prototype.saveUrlToLocal(params, image_url, i);
-//                            if (--Wbpd.prototype.pic_num == 0) { //如果图片数递减至0,说明所有图片上传完成
-//                                Wbpd.prototype.toggleBtn(1);
-//                            }
-//                            $('#pic' + i).nextAll('.progress').hide();
-//                            $('#pic' + i).nextAll('.input-append').show();
-//                            return true;
-//                        } catch (e) {
-//                            console.log(e);
-////                            alert("上传失败，您可以到https://sm.ms/手动上传或稍后再试~");
-////                            chrome.tabs.create({ url: 'https://sm.ms/' });
-////                            window.close();
-//                            return;
-//                        }
                     } else {
                         swal("图片上传失败...");
                     }

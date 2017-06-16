@@ -3,6 +3,8 @@ var customIconPreview = $('#custom-icon-preview');
 var canvas = document.createElement('canvas');
 var ctx = canvas.getContext('2d');
 
+console.log(storageData);
+
 Date.prototype.format = function(format) {
     var date = {
         "M+": this.getMonth() + 1,
@@ -30,14 +32,14 @@ function buildHtml() {
     for (var i = 0; i < storageData.length; i++) {
         var item = storageData[i];
         var timestamp = item.date;
-        var src = item.imgsrc;
-        var thumb = src.replace("large/", "bmiddle/");
+        var src = "https://ooo.0o0.ooo" + item.imginfo.path;
+        var thumb = "https://ooo.0o0.ooo" + item.imginfo.path;
         var d = new Date(timestamp);
         html += imageitemtemplate
-            .replace(/{{imgsrcthumb}}/g, thumb)
-            .replace(/{{date}}/g, d.format('yyyy-MM-dd h:m'))
-            .replace(/{{d}}/g, timestamp)
-            .replace(/{{imgsrc}}/g, src);
+                .replace(/{{imgsrcthumb}}/g, thumb)
+                .replace(/{{date}}/g, d.format('yyyy-MM-dd h:m'))
+                .replace(/{{d}}/g, timestamp)
+                .replace(/{{imgsrc}}/g, src);
     }
     $('.box').html('<h5>上传历史</h5>' + html);
     if (localStorage.customIcon == undefined) {
@@ -54,8 +56,24 @@ function removeImgItem(d) {
         var item = storageData[i];
         var timestamp = item.date;
         if (timestamp == d) {
-            storageData.splice(i, 1);
-            localStorage.smmsData = JSON.stringify(storageData);
+//            删除服务器上的数据
+            console.log("执行删除");
+            var hash = item.imginfo.hash;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var resText = xhr.responseText;
+                        console.log(resText);
+                        storageData.splice(i, 1);
+                        localStorage.smmsData = JSON.stringify(storageData);
+                    } else {
+                        swal("图片删除失败...");
+                    }
+                }
+            };
+            xhr.open('POST', 'https://sm.ms/api/delete/' + hash);
+            xhr.send();
             return;
         }
     }
@@ -66,7 +84,9 @@ $(document).ready(function() {
     var version = chrome.runtime.getManifest().version;
     $(".current_version").text(version);
 
-    $(document).on('click','input[type=text]',function(){ this.select(); });
+    $(document).on('click', 'input[type=text]', function() {
+        this.select();
+    });
 
     $('.close').on('click', function() {
         event.preventDefault();
@@ -77,19 +97,19 @@ $(document).ready(function() {
         swal({
             title: "扫码捐助",
             text: '<img width="200" height="200" src="http://ww2.sinaimg.cn/large/5fd37818gw1f46gp47ynsj20dw0dwq4i.jpg">' +
-                '<span style="margin:10px;">或</span>' +
-                '<img width="200" height="200" src="http://ww3.sinaimg.cn/large/5fd37818gw1f46gph7932j20dw0dwmz6.jpg">',
+                    '<span style="margin:10px;">或</span>' +
+                    '<img width="200" height="200" src="http://ww3.sinaimg.cn/large/5fd37818gw1f46gph7932j20dw0dwmz6.jpg">',
             html: true
         });
     });
 
     $(".donate").hover(
-        function() {
-            $(this).addClass('blinking');
-        },
-        function() {
-            $(this).removeClass('blinking');
-        }
+            function() {
+                $(this).addClass('blinking');
+            },
+            function() {
+                $(this).removeClass('blinking');
+            }
     );
 
     // Build HTML on load
@@ -131,7 +151,7 @@ $(document).ready(function() {
         ctx.clearRect(0, 0, 38, 38);
         ctx.drawImage(document.getElementById("custom-icon-preview"), 0, 0, 38, 38);
         var imageData = ctx.getImageData(0, 0, 38, 38);
-        chrome.browserAction.setIcon({ imageData: imageData });
+        chrome.browserAction.setIcon({imageData: imageData});
         localStorage.customIcon = JSON.stringify(imageData.data);
     });
 
@@ -145,7 +165,7 @@ $(document).ready(function() {
                 reader.onload = function(e) {
                     var result = e.target.result;
                     customIconPreview.attr('src', result);
-                    swal({ title: "Woo~!", text: "图标更换成功.", timer: 2000, showConfirmButton: false });
+                    swal({title: "Woo~!", text: "图标更换成功.", timer: 2000, showConfirmButton: false});
                     localStorage.customIconBase64 = result;
                     $('input:checkbox[id="customIcon"]').prop("checked", true);
                     $('input:checkbox[id="defaultIcon"]').prop("checked", false);
