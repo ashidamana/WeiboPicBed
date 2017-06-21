@@ -41,8 +41,12 @@ Weixin
 ##  更新日志  
 
 ```
+2017-06-21 v1.0.0  
+SMMS图床伴侣扩展终于在360应用市场审核通过。  
+直达链接，[快戳我](https://ext.se.360.cn/webstore/detail/gpfmdejmklijnfobjnjaeglkggocnlnn)  
+
 2017-06-16 v1.0.0  
-打包发布
+打包发布到360应用市场
 
 2017-06-16 v0.0.2
 支持点选/拖拽2种方式上传图片至https://sm.ms/
