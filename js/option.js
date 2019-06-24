@@ -29,11 +29,11 @@ Date.prototype.format = function(format) {
 function buildHtml() {
     var html = '';
     var imageitemtemplate = $('#image-item-template').html();
-    for (var i = 0; i < storageData.length; i++) {
+    for (var i = storageData.length-1; i > -1; i--) {
         var item = storageData[i];
         var timestamp = item.date;
-        var src = "https://ooo.0o0.ooo" + item.imginfo.path;
-        var thumb = "https://ooo.0o0.ooo" + item.imginfo.path;
+        var src =  item.imginfo.url;
+        var thumb = item.imginfo.url;
         var d = new Date(timestamp);
         html += imageitemtemplate
                 .replace(/{{imgsrcthumb}}/g, thumb)

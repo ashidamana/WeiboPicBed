@@ -447,6 +447,7 @@ Wbpd.prototype = {
                                 Wbpd.prototype.saveImgInfoToLocal({
                                     filename:rs.data.filename,
                                     storename:rs.data.storename,
+                                    url:rs.data.url,
                                     path:rs.data.path,
                                     hash:rs.data.hash
                                 });
