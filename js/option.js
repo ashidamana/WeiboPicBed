@@ -20,6 +20,15 @@ Date.prototype.format = function(format) {
     }
     for (var k in date) {
         if (new RegExp("(" + k + ")").test(format)) {
+            if(k=='h+'){
+                var timeValue=this.getHours()>12?"下午":"上午";
+                if(this.getHours()>18) timeValue="晚上";
+                if(this.getHours()>21) timeValue="深夜";
+                var hours=this.getHours();
+                date['h+']=timeValue+" "+hours;
+                format = format.replace(RegExp.$1, date['h+']);
+                continue; 
+            }
             format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
         }
     }
@@ -29,15 +38,15 @@ Date.prototype.format = function(format) {
 function buildHtml() {
     var html = '';
     var imageitemtemplate = $('#image-item-template').html();
-    for (var i = 0; i < storageData.length; i++) {
+    for (var i = storageData.length-1; i > -1; i--) {
         var item = storageData[i];
         var timestamp = item.date;
-        var src = "https://ooo.0o0.ooo" + item.imginfo.path;
-        var thumb = "https://ooo.0o0.ooo" + item.imginfo.path;
+        var src =  item.imginfo.url;
+        var thumb = item.imginfo.url;
         var d = new Date(timestamp);
         html += imageitemtemplate
                 .replace(/{{imgsrcthumb}}/g, thumb)
-                .replace(/{{date}}/g, d.format('yyyy-MM-dd h:m'))
+                .replace(/{{date}}/g, d.format('yyyy-MM-dd hh:mm'))
                 .replace(/{{d}}/g, timestamp)
                 .replace(/{{imgsrc}}/g, src);
     }
